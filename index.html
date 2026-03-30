@@ -122,28 +122,26 @@ section{position:relative;z-index:1;padding:80px 48px}
 .resume-placeholder-icon{font-size:40px}
 .resume-placeholder-text{font-family:var(--font-m);font-size:12px;letter-spacing:.08em;text-align:center;line-height:1.6}
 
-/* VIDEO SHOWCASE */
+/* VIDEO SECTION */
 .video-ai-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(66,133,244,.1),rgba(52,168,83,.08));border:1px solid rgba(66,133,244,.25);border-radius:6px;padding:8px 16px;font-family:var(--font-m);font-size:11px;color:var(--google-blue);letter-spacing:.06em;margin-bottom:32px}
 .video-ai-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--google-blue);animation:blink 1.4s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.video-showcase{display:flex;flex-direction:column;gap:20px}
-.video-main{position:relative;width:100%;border-radius:12px;overflow:hidden;background:#000;border:1px solid var(--border);aspect-ratio:16/9}
-.video-main video{width:100%;height:100%;object-fit:contain;display:block;background:#000}
-.video-info{margin-bottom:8px}
-.video-active-title{font-size:20px;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
-.video-active-desc{font-family:var(--font-m);font-size:12px;color:var(--text-muted);line-height:1.6;max-width:600px;margin-bottom:8px}
-.video-active-tools{display:flex;gap:6px;flex-wrap:wrap}
 .tool-pill{font-family:var(--font-m);font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:3px;border:1px solid rgba(66,133,244,.25);color:var(--google-blue)}
-.video-thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
-.video-thumb{aspect-ratio:16/9;border-radius:8px;overflow:hidden;border:2px solid var(--border);cursor:pointer;position:relative;transition:all .25s;background:#000}
-.video-thumb:hover{border-color:var(--border-hover);transform:translateY(-2px)}
-.video-thumb.active{border-color:var(--google-blue);box-shadow:0 0 20px rgba(66,133,244,.15)}
-.video-thumb video{width:100%;height:100%;object-fit:cover;pointer-events:none}
-.video-thumb-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:10px 12px;background:linear-gradient(transparent 40%,rgba(0,0,0,.8));pointer-events:none}
-.video-thumb-name{font-family:var(--font-m);font-size:10px;color:#fff;letter-spacing:.06em;font-weight:500}
-.video-thumb-dur{font-family:var(--font-m);font-size:9px;color:rgba(255,255,255,.5);letter-spacing:.06em;margin-top:2px}
-.video-thumb-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;pointer-events:none;opacity:0;transition:opacity .2s}
-.video-thumb:hover .video-thumb-play{opacity:1}
+.video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:24px}
+.video-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;transition:all .3s;cursor:pointer;text-decoration:none;display:block;position:relative;overflow:hidden}
+.video-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#4285f4,#34a853,#fbbc04,#ea4335);opacity:0;transition:opacity .3s}
+.video-card:hover{border-color:rgba(66,133,244,.35);background:rgba(66,133,244,.06);transform:translateY(-2px)}
+.video-card:hover::before{opacity:1}
+.video-card-icon{font-size:28px;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.video-card-play{width:40px;height:40px;border-radius:50%;border:1px solid rgba(66,133,244,.3);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--google-blue);transition:all .2s;flex-shrink:0}
+.video-card:hover .video-card-play{background:rgba(66,133,244,.15);border-color:var(--google-blue)}
+.video-card-title{font-size:15px;font-weight:700;letter-spacing:-.01em;margin-bottom:6px;color:var(--text)}
+.video-card-desc{font-family:var(--font-m);font-size:12px;color:var(--text-muted);line-height:1.6;margin-bottom:12px}
+.video-card-tools{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.video-card-cta{font-family:var(--font-m);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--google-blue);opacity:0;transition:opacity .2s}
+.video-card:hover .video-card-cta{opacity:1}
+.video-drive-link{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid rgba(66,133,244,.25);border-radius:8px;padding:14px 20px;font-family:var(--font-m);font-size:12px;color:var(--google-blue);letter-spacing:.06em;text-decoration:none;transition:all .25s}
+.video-drive-link:hover{border-color:var(--google-blue);background:rgba(66,133,244,.08);transform:translateY(-1px)}
 
 /* ABOUT */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
@@ -237,7 +235,7 @@ footer{position:relative;z-index:1;padding:40px 48px;border-top:1px solid var(--
   <div class="hero-cta fade-up stagger-3">
     <a href="#apps" class="btn btn-primary">View Work</a>
     <a href="#google" class="btn btn-google">Google Fellowship Work ↗</a>
-    <a href="mailto:joshuaviera95@gmail.com" class="btn btn-ghost">Get in Touch</a>
+    <a href="mailto:joshuaviera@pursuit.org" class="btn btn-ghost">Get in Touch</a>
   </div>
   <div class="hero-scroll fade-up stagger-4">
     <div class="scroll-line"></div>
@@ -268,7 +266,7 @@ footer{position:relative;z-index:1;padding:40px 48px;border-top:1px solid var(--
       <div class="section-label">02 — AI-Generated Video</div>
       <h2 class="section-title">Motion Work</h2>
     </div>
-    <div class="section-count" id="video-count">0 clips</div>
+    <div class="section-count" id="video-count">5 clips</div>
   </div>
 
   <div class="video-ai-badge">
@@ -276,19 +274,11 @@ footer{position:relative;z-index:1;padding:40px 48px;border-top:1px solid var(--
     Made with Google Gemini + Veo 3 · Google Flow · Premiere Pro
   </div>
 
-  <div class="video-showcase" id="videoShowcase">
-    <div class="video-main" id="videoMain">
-      <video id="mainPlayer" controls playsinline preload="metadata">
-        <source id="mainSource" src="" type="video/mp4">
-      </video>
-    </div>
-    <div class="video-info">
-      <h3 class="video-active-title" id="videoActiveTitle">—</h3>
-      <p class="video-active-desc" id="videoActiveDesc">Select a video below</p>
-      <div class="video-active-tools" id="videoActiveTools"></div>
-    </div>
-    <div class="video-thumbs" id="videoThumbs"></div>
-  </div>
+  <div class="video-grid" id="videoGrid"></div>
+
+  <a href="https://drive.google.com/drive/folders/1LxTZZTaA_MKldBmOjgUo-ius0MrYCPk7?usp=sharing" target="_blank" class="video-drive-link">
+    📂 View Full Video Reel on Google Drive ↗
+  </a>
 </section>
 
 <div class="neon-divider google-divider"></div>
@@ -382,7 +372,7 @@ footer{position:relative;z-index:1;padding:40px 48px;border-top:1px solid var(--
   <div class="footer-socials">
     <a href="https://github.com/JoshuaViera" target="_blank">GitHub</a>
     <a href="https://linkedin.com/in/joshuaviera" target="_blank">LinkedIn</a>
-    <a href="mailto:joshuaviera95@gmail.com">Email</a>
+    <a href="mailto:joshuaviera@pursuit.org">Email</a>
   </div>
 </footer>
 
@@ -418,7 +408,7 @@ const projects=[
     stack:'Next.js · TypeScript · NLP',
     desc:'Rebuilt a broken triage algorithm from 60% to 93% accuracy using weighted NLP signals. Presented findings directly to the CEO. This became a defining portfolio signal.',
     emoji:'🧠',
-    github:'https://github.com/JoshuaViera/l2assessment',
+    github:'https://github.com/JoshuaViera',
     tall:false
   },
   {
@@ -427,7 +417,7 @@ const projects=[
     stack:'FFmpeg.wasm · Canvas API · HuggingFace',
     desc:'Browser-based text-to-video tool. No backend, no subscription. Text prompt → AI image → animated video — all client-side using FFmpeg.wasm and HuggingFace free API.',
     emoji:'🎞',
-    github:'https://github.com/JoshuaViera/MotionFrame',
+    github:'https://github.com/JoshuaViera',
     tall:true
   },
   {
@@ -436,7 +426,7 @@ const projects=[
     stack:'Leaflet · Turf.js · GeoJSON · Vanilla JS',
     desc:'NYC-focused nuclear emergency survival app built in 24hrs at a fellowship hackathon. Static GeoJSON architecture, no backend. Calculates evacuation routes and shelter proximity in real-time.',
     emoji:'☢️',
-    github:'https://github.com/JoshuaViera/NightFallV2',
+    github:'https://github.com/JoshuaViera',
     tall:true
   },
   {
@@ -445,7 +435,7 @@ const projects=[
     stack:'Next.js · TypeScript · Voice Cloning',
     desc:'LinkedIn voice-cloning and post-generation tool for solo consultants. Generate on-brand content in your own voice. Co-founding — currently in prototype.',
     emoji:'🎙',
-    github:'https://github.com/JoshuaViera/ArchiveAi',
+    github:'https://github.com/JoshuaViera',
     tall:false
   },
   {
@@ -454,7 +444,7 @@ const projects=[
     stack:'Next.js · TypeScript · Canvas API · Supabase',
     desc:'Full 5-level browser space shooter with boss fights, analytics, leaderboards, and mobile controls. Refactored from a 1,400-line monolith into 10 modular hooks.',
     emoji:'🚀',
-    github:'https://github.com/JoshuaViera/star-scavenger',
+    github:'https://github.com/JoshuaViera',
     tall:true
   },
   {
@@ -463,7 +453,7 @@ const projects=[
     stack:'React Native · Expo · GPT-4 Vision · Stripe',
     desc:'Two-sided marketplace connecting homeowners with snow removal providers. GPT-4 Vision analyzes property photos for automatic quoting.',
     emoji:'❄️',
-    github:'https://github.com/JoshuaViera/snowDayApp',
+    github:'https://github.com/JoshuaViera',
     tall:false
   },
   {
@@ -513,86 +503,67 @@ const googleItems=[
 ];
 
 // ══════════════════════════════════════════════════════════════
-// ⚠️  VIDEO FILES: Update the filenames below to match your actual files.
-//     Place your MP4/MOV files in the SAME folder as this HTML file.
-//     Example: if your file is "gemini-cityscape.mp4", set src to that.
+// VIDEO CARDS — each links directly to Google Drive
 // ══════════════════════════════════════════════════════════════
 const videoItems=[
   {
-    src:'https://drive.google.com/uc?export=download&id=1D-nK-n9VLIu70SLhPFUt9doPQs0FsH0c',
     title:'Super Weez',
-    desc:'Brief description of what this piece is and what it explores. What was your creative intent?',
+    desc:'AI-generated short exploring character and motion through Veo 3.',
+    driveUrl:'https://drive.google.com/file/d/1D-nK-n9VLIu70SLhPFUt9doPQs0FsH0c/view',
     tools:['Gemini','Veo 3','Google Flow','Premiere Pro']
   },
   {
-    src:'https://drive.google.com/uc?export=download&id=1k6hkj6qZXxFPbnf_Y48gpWE88QNHNx2h',
     title:'Emotions',
-    desc:'Brief description. What story does this tell? What did you discover making it?',
+    desc:'Visual narrative on emotional states, directed in Google Flow and color-graded in Premiere.',
+    driveUrl:'https://drive.google.com/file/d/1k6hkj6qZXxFPbnf_Y48gpWE88QNHNx2h/view',
     tools:['Gemini','Veo 3','Google Flow','Premiere Pro']
   },
   {
-    src:'https://drive.google.com/uc?export=download&id=1teYbNAA3woh7CFqFAoDozCEfXgx-OF5N',
     title:'Quality Control',
-    desc:'Brief description. How does this reflect your creative identity?',
+    desc:'Experimental piece blending AI-generated footage with editorial pacing.',
+    driveUrl:'https://drive.google.com/file/d/1teYbNAA3woh7CFqFAoDozCEfXgx-OF5N/view',
     tools:['Gemini','Veo 3','Google Flow','Premiere Pro']
   },
   {
-    src:'https://drive.google.com/uc?export=download&id=1OYA8l0mgT8N6FOctVlJ7XeEz6k_UxCnD',
     title:'Cyber View',
-    desc:'Trailer for a story I\'m working on',
+    desc:'Trailer for a story I\'m working on — worldbuilding through AI video.',
+    driveUrl:'https://drive.google.com/file/d/1OYA8l0mgT8N6FOctVlJ7XeEz6k_UxCnD/view',
     tools:['Gemini','Veo 3','Google Flow','Premiere Pro']
   },
   {
-    src:'https://drive.google.com/uc?export=download&id=1vzzI72aIpxYOXQE0HCwaHXs2YwHbVCIo',
     title:'World Ender',
-    desc:'Hackathon Project',
+    desc:'Hackathon project — rapid AI video prototyping under time pressure.',
+    driveUrl:'https://drive.google.com/file/d/1vzzI72aIpxYOXQE0HCwaHXs2YwHbVCIo/view',
     tools:['Gemini','Veo 3','Google Flow','Premiere Pro']
   },
 ];
 
-// ══ VIDEO SHOWCASE ══
-const mainPlayer=document.getElementById('mainPlayer');
-const mainSource=document.getElementById('mainSource');
-const videoThumbs=document.getElementById('videoThumbs');
-let activeVideoIdx=0;
+// ══ VIDEO GRID ══
+const videoGrid=document.getElementById('videoGrid');
 
-function loadVideo(idx){
-  activeVideoIdx=idx;
-  const v=videoItems[idx];
-  mainSource.src=v.src;
-  mainPlayer.load();
-  document.getElementById('videoActiveTitle').textContent=v.title;
-  document.getElementById('videoActiveDesc').textContent=v.desc;
-  document.getElementById('videoActiveTools').innerHTML=v.tools.map(t=>`<span class="tool-pill">${t}</span>`).join('');
-  document.querySelectorAll('.video-thumb').forEach((el,i)=>{
-    el.classList.toggle('active',i===idx);
-  });
-}
-
-function renderVideoThumbs(){
-  videoThumbs.innerHTML='';
-  videoItems.forEach((v,i)=>{
-    const thumb=document.createElement('div');
-    thumb.className='video-thumb'+(i===0?' active':'');
-    thumb.innerHTML=`
-      <video src="${v.src}" muted preload="metadata" playsinline></video>
-      <div class="video-thumb-play">▶</div>
-      <div class="video-thumb-overlay">
-        <div class="video-thumb-name">${v.title}</div>
+function renderVideoGrid(){
+  videoGrid.innerHTML='';
+  videoItems.forEach(v=>{
+    const card=document.createElement('a');
+    card.className='video-card';
+    card.href=v.driveUrl;
+    card.target='_blank';
+    card.rel='noopener';
+    card.innerHTML=`
+      <div class="video-card-icon">
+        <div class="video-card-play">▶</div>
       </div>
+      <div class="video-card-title">${v.title}</div>
+      <div class="video-card-desc">${v.desc}</div>
+      <div class="video-card-tools">${v.tools.map(t=>`<span class="tool-pill">${t}</span>`).join('')}</div>
+      <div class="video-card-cta">Watch on Google Drive ↗</div>
     `;
-    thumb.addEventListener('click',()=>{ loadVideo(i); mainPlayer.play(); });
-    // Preview on hover
-    const thumbVid=thumb.querySelector('video');
-    thumb.addEventListener('mouseenter',()=>{ thumbVid.currentTime=0; thumbVid.play().catch(()=>{}); });
-    thumb.addEventListener('mouseleave',()=>{ thumbVid.pause(); thumbVid.currentTime=0; });
-    videoThumbs.appendChild(thumb);
+    videoGrid.appendChild(card);
   });
   document.getElementById('video-count').textContent=videoItems.length+' clip'+(videoItems.length!==1?'s':'');
 }
 
-renderVideoThumbs();
-if(videoItems.length>0) loadVideo(0);
+renderVideoGrid();
 
 // ══ APP GRID ══
 const appGrid=document.getElementById('appGrid');
