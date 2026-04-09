@@ -149,4 +149,7 @@ document.querySelectorAll('.modal-backdrop').forEach(m=>{m.addEventListener('cli
 document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-backdrop.open').forEach(m=>m.classList.remove('open'));});
 const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.opacity='1';entry.target.style.transform='translateY(0)';}});},{threshold:0.1});
 document.querySelectorAll('.project-card,.google-card,.stat-card,.video-card').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity .5s ease, transform .5s ease';observer.observe(el);});
-(function(){const p=document.getElementById('resumePreview'),ph=document.getElementById('resumePlaceholder');fetch('joshua_vier
+(function(){const p=document.getElementById('resumePreview'),ph=document.getElementById('resumePlaceholder');fetch('joshua_viera_resume.pdf',{method:'HEAD'}).then(r=>{if(r.ok){ph.style.display='none';p.innerHTML='<iframe src="joshua_viera_resume.pdf" title="Resume"></iframe>';}}).catch(()=>{});})();
+</script>
+</body>
+</html>
