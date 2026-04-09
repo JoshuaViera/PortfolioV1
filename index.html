@@ -8,683 +8,145 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#040408;--bg2:#08080f;
-  --surface:rgba(255,255,255,0.04);--surface-hover:rgba(255,255,255,0.07);
-  --border:rgba(255,255,255,0.08);--border-hover:rgba(255,255,255,0.18);
-  --neon:#00f5c4;--neon2:#7b5ea7;--neon3:#ff6b6b;--google-blue:#4285f4;
-  --text:#f0f0f0;--text-muted:rgba(240,240,240,0.45);--text-dim:rgba(240,240,240,0.2);
-  --font-d:'Syne',sans-serif;--font-m:'JetBrains Mono',monospace;
-}
+:root{--bg:#040408;--bg2:#08080f;--surface:rgba(255,255,255,0.04);--surface-hover:rgba(255,255,255,0.07);--border:rgba(255,255,255,0.08);--border-hover:rgba(255,255,255,0.18);--neon:#00f5c4;--neon2:#7b5ea7;--neon3:#ff6b6b;--google-blue:#4285f4;--text:#f0f0f0;--text-muted:rgba(240,240,240,0.45);--text-dim:rgba(240,240,240,0.2);--font-d:'Syne',sans-serif;--font-m:'JetBrains Mono',monospace}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--font-d);min-height:100vh;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.6}
 body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,245,196,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,245,196,.025) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
-
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(4,4,8,.8);border-bottom:1px solid var(--border)}
-.nav-logo{font-size:15px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--text)}
-.nav-logo span{color:var(--neon)}
+.nav-logo{font-size:15px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--text)}.nav-logo span{color:var(--neon)}
 .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
-.nav-links a{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .2s;font-family:var(--font-m)}
-.nav-links a:hover{color:var(--neon)}
-.nav-links a.google-link:hover{color:var(--google-blue)}
-.nav-right{display:flex;gap:10px;align-items:center}
-.nav-socials{display:flex;gap:10px}
-.nav-socials a{font-size:11px;font-family:var(--font-m);color:var(--text-dim);text-decoration:none;border:1px solid var(--border);padding:6px 12px;border-radius:4px;transition:all .2s;letter-spacing:.08em;cursor:pointer;background:transparent}
-.nav-socials a:hover{border-color:var(--neon);color:var(--neon);background:rgba(0,245,196,.05)}
-
-/* HERO */
+.nav-links a{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .2s;font-family:var(--font-m)}.nav-links a:hover{color:var(--neon)}.nav-links a.google-link:hover{color:var(--google-blue)}
+.nav-right{display:flex;gap:10px;align-items:center}.nav-socials{display:flex;gap:10px}
+.nav-socials a{font-size:11px;font-family:var(--font-m);color:var(--text-dim);text-decoration:none;border:1px solid var(--border);padding:6px 12px;border-radius:4px;transition:all .2s;letter-spacing:.08em;cursor:pointer;background:transparent}.nav-socials a:hover{border-color:var(--neon);color:var(--neon);background:rgba(0,245,196,.05)}
 .hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 48px 80px;overflow:hidden}
 .hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(0,245,196,.07) 0%,transparent 70%);top:10%;left:-100px;pointer-events:none;animation:pulse 8s ease-in-out infinite}
 .hero-glow2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(123,94,167,.06) 0%,transparent 70%);bottom:10%;right:5%;pointer-events:none;animation:pulse 10s ease-in-out infinite reverse}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.1)}}
-.hero-tag{font-family:var(--font-m);font-size:11px;letter-spacing:.2em;color:var(--neon);text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:10px}
-.hero-tag::before{content:'';display:inline-block;width:24px;height:1px;background:var(--neon)}
-.hero h1{font-size:clamp(52px,8vw,96px);font-weight:800;line-height:.95;letter-spacing:-.02em;margin-bottom:32px;max-width:900px}
-.hero h1 .line2{color:var(--neon)}
+.hero-tag{font-family:var(--font-m);font-size:11px;letter-spacing:.2em;color:var(--neon);text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:10px}.hero-tag::before{content:'';display:inline-block;width:24px;height:1px;background:var(--neon)}
+.hero h1{font-size:clamp(52px,8vw,96px);font-weight:800;line-height:.95;letter-spacing:-.02em;margin-bottom:32px;max-width:900px}.hero h1 .line2{color:var(--neon)}
 .hero-sub{font-family:var(--font-m);font-size:14px;color:var(--text-muted);max-width:480px;line-height:1.7;margin-bottom:48px}
 .hero-cta{display:flex;gap:16px;flex-wrap:wrap}
 .btn{font-family:var(--font-m);font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:14px 28px;border-radius:4px;transition:all .25s;cursor:pointer;border:none;display:inline-block}
-.btn-primary{background:var(--neon);color:#000;font-weight:700}
-.btn-primary:hover{background:#00ddb0;transform:translateY(-1px)}
-.btn-ghost{background:transparent;color:var(--text-muted);border:1px solid var(--border-hover)}
-.btn-ghost:hover{border-color:var(--neon);color:var(--neon)}
-.btn-google{background:var(--google-blue);color:#fff;font-weight:700}
-.btn-google:hover{background:#3367d6;transform:translateY(-1px)}
+.btn-primary{background:var(--neon);color:#000;font-weight:700}.btn-primary:hover{background:#00ddb0;transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--text-muted);border:1px solid var(--border-hover)}.btn-ghost:hover{border-color:var(--neon);color:var(--neon)}
+.btn-google{background:var(--google-blue);color:#fff;font-weight:700}.btn-google:hover{background:#3367d6;transform:translateY(-1px)}
 .hero-scroll{position:absolute;bottom:40px;left:48px;font-family:var(--font-m);font-size:10px;letter-spacing:.2em;color:var(--text-dim);text-transform:uppercase;display:flex;align-items:center;gap:10px}
-.scroll-line{width:40px;height:1px;background:var(--text-dim);position:relative;overflow:hidden}
-.scroll-line::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--neon);animation:scrollAnim 2s ease-in-out infinite}
+.scroll-line{width:40px;height:1px;background:var(--text-dim);position:relative;overflow:hidden}.scroll-line::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--neon);animation:scrollAnim 2s ease-in-out infinite}
 @keyframes scrollAnim{0%{left:-100%}100%{left:100%}}
-
-/* SECTIONS */
 section{position:relative;z-index:1;padding:80px 48px}
 .section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:48px;padding-bottom:20px;border-bottom:1px solid var(--border)}
-.section-label{font-family:var(--font-m);font-size:10px;color:var(--neon);letter-spacing:.25em;text-transform:uppercase;margin-bottom:8px}
-.section-label.google-label{color:var(--google-blue)}
+.section-label{font-family:var(--font-m);font-size:10px;color:var(--neon);letter-spacing:.25em;text-transform:uppercase;margin-bottom:8px}.section-label.google-label{color:var(--google-blue)}
 .section-title{font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-.02em;line-height:1}
 .section-count{font-family:var(--font-m);font-size:11px;color:var(--text-dim);letter-spacing:.1em}
-
-/* GOOGLE SECTION BANNER */
 .google-banner{background:linear-gradient(135deg,rgba(66,133,244,.08),rgba(52,168,83,.05),rgba(251,188,4,.05),rgba(234,67,53,.05));border:1px solid rgba(66,133,244,.2);border-radius:12px;padding:28px 32px;margin-bottom:40px;display:flex;align-items:center;gap:24px}
-.google-banner-icon{font-size:36px;flex-shrink:0}
-.google-banner-text h3{font-size:16px;font-weight:700;margin-bottom:6px;letter-spacing:-.01em}
-.google-banner-text p{font-family:var(--font-m);font-size:12px;color:var(--text-muted);line-height:1.6;max-width:560px}
+.google-banner-icon{font-size:36px;flex-shrink:0}.google-banner-text h3{font-size:16px;font-weight:700;margin-bottom:6px}.google-banner-text p{font-family:var(--font-m);font-size:12px;color:var(--text-muted);line-height:1.6;max-width:560px}
 .google-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(66,133,244,.12);border:1px solid rgba(66,133,244,.25);border-radius:4px;padding:4px 10px;font-family:var(--font-m);font-size:10px;color:var(--google-blue);letter-spacing:.1em;text-transform:uppercase;margin-top:10px}
-
-/* GOOGLE TOOLS GRID */
-.google-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.google-card{background:var(--surface);border:1px solid rgba(66,133,244,.15);border-radius:10px;padding:24px;transition:all .3s;cursor:pointer;position:relative;overflow:hidden}
-.google-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#4285f4,#34a853,#fbbc04,#ea4335);opacity:0;transition:opacity .3s}
-.google-card:hover{border-color:rgba(66,133,244,.35);background:rgba(66,133,244,.06);transform:translateY(-2px)}
-.google-card:hover::before{opacity:1}
-.google-card-icon{font-size:28px;margin-bottom:14px}
-.google-card-name{font-size:15px;font-weight:700;letter-spacing:-.01em;margin-bottom:6px}
-.google-card-tool{font-family:var(--font-m);font-size:10px;color:var(--google-blue);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
-.google-card-desc{font-family:var(--font-m);font-size:12px;color:var(--text-muted);line-height:1.6}
-.google-card-link{display:inline-flex;align-items:center;gap:5px;margin-top:14px;font-family:var(--font-m);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--google-blue);text-decoration:none;opacity:0;transition:opacity .2s}
-.google-card:hover .google-card-link{opacity:1}
-
-/* MASONRY */
-.masonry-grid{columns:3;column-gap:16px}
-@media(max-width:900px){.masonry-grid{columns:2}}
-@media(max-width:580px){.masonry-grid{columns:1}}
-.project-card{break-inside:avoid;margin-bottom:16px;background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:all .3s;cursor:pointer;position:relative;display:block}
-.project-card:hover{border-color:var(--border-hover);background:var(--surface-hover);transform:translateY(-2px)}
-.project-card:hover .card-overlay{opacity:1}
-.card-thumb{width:100%;background:rgba(255,255,255,.03);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.card-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.google-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.google-card{background:var(--surface);border:1px solid rgba(66,133,244,.15);border-radius:10px;transition:all .3s;cursor:default;position:relative;overflow:hidden}
+.google-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#4285f4,#34a853,#fbbc04,#ea4335);opacity:0;transition:opacity .3s;z-index:2}.google-card:hover{border-color:rgba(66,133,244,.35);background:rgba(66,133,244,.06);transform:translateY(-2px)}.google-card:hover::before{opacity:1}
+.google-card-thumb{width:100%;aspect-ratio:16/9;overflow:hidden;background:#0a0a14;display:flex;align-items:center;justify-content:center}
+.google-card-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}.google-card:hover .google-card-thumb img{transform:scale(1.03)}
+.gct-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:40px;background:linear-gradient(135deg,rgba(66,133,244,.08),rgba(52,168,83,.04))}
+.google-card-body{padding:18px 20px 20px}
+.google-card-name{font-size:15px;font-weight:700;margin-bottom:4px;color:var(--text)}.google-card-tool{font-family:var(--font-m);font-size:10px;color:var(--google-blue);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}.google-card-desc{font-family:var(--font-m);font-size:12px;color:var(--text-muted);line-height:1.6;margin-bottom:12px}
+.google-card-links{display:flex;gap:8px;flex-wrap:wrap}
+.gcl{display:inline-flex;align-items:center;gap:5px;font-family:var(--font-m);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--google-blue);text-decoration:none;border:1px solid rgba(66,133,244,.25);padding:4px 10px;border-radius:3px;transition:all .2s}.gcl:hover{background:rgba(66,133,244,.12)}.gcl.gh{color:var(--text-muted);border-color:var(--border)}.gcl.gh:hover{border-color:var(--border-hover);background:var(--surface-hover)}
+.masonry-grid{columns:3;column-gap:16px}@media(max-width:900px){.masonry-grid{columns:2}}@media(max-width:580px){.masonry-grid{columns:1}}
+.project-card{break-inside:avoid;margin-bottom:16px;background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:all .3s;cursor:pointer;position:relative;display:block}.project-card:hover{border-color:var(--border-hover);background:var(--surface-hover);transform:translateY(-2px)}.project-card:hover .card-overlay{opacity:1}
+.card-thumb{width:100%;background:rgba(255,255,255,.03);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.card-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}.project-card:hover .card-thumb img{transform:scale(1.03)}
 .card-thumb-placeholder{display:flex;align-items:center;justify-content:center;font-size:32px;background:linear-gradient(135deg,rgba(0,245,196,.05),rgba(123,94,167,.05))}
-.card-overlay{position:absolute;inset:0;background:rgba(0,245,196,.08);border:1px solid rgba(0,245,196,.2);border-radius:10px;opacity:0;transition:opacity .3s;display:flex;align-items:center;justify-content:center;gap:10px}
-.card-overlay-text{font-family:var(--font-m);font-size:11px;letter-spacing:.15em;color:var(--neon);text-transform:uppercase}
-.card-body{padding:14px 16px 16px}
-.card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
-.tag{font-family:var(--font-m);font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:3px;border:1px solid var(--border);color:var(--text-dim)}
-.tag.neon{border-color:rgba(0,245,196,.3);color:var(--neon)}
-.card-name{font-size:15px;font-weight:700;letter-spacing:-.01em;margin-bottom:6px;color:var(--text)}
-.card-desc{font-size:12px;color:var(--text-muted);line-height:1.55;font-family:var(--font-m)}
-.card-links{display:flex;gap:8px;margin-top:12px;opacity:0;transition:opacity .2s}
-.project-card:hover .card-links{opacity:1}
-.card-link{display:inline-flex;align-items:center;gap:5px;font-family:var(--font-m);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--neon);text-decoration:none;border:1px solid rgba(0,245,196,.25);padding:4px 10px;border-radius:3px;transition:all .2s}
-.card-link:hover{background:rgba(0,245,196,.1)}
-.card-link.gh{color:var(--text-muted);border-color:var(--border)}
-.card-link.gh:hover{border-color:var(--border-hover);background:var(--surface-hover)}
-
-/* RESUME SECTION */
-.resume-wrap{display:grid;grid-template-columns:1fr 2fr;gap:40px;align-items:start}
-@media(max-width:768px){.resume-wrap{grid-template-columns:1fr}}
-.resume-download-btn{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 20px;font-family:var(--font-m);font-size:11px;color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .25s;width:100%;margin-bottom:12px;text-decoration:none}
-.resume-download-btn:hover{border-color:var(--neon);color:var(--neon);background:rgba(0,245,196,.05)}
-.resume-download-btn .rd-icon{font-size:18px}
-.resume-preview{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;min-height:400px;display:flex;align-items:center;justify-content:center}
-.resume-preview iframe{width:100%;height:600px;border:none;display:block}
-.resume-placeholder{display:flex;flex-direction:column;align-items:center;gap:12px;color:var(--text-dim);padding:48px}
-.resume-placeholder-icon{font-size:40px}
-.resume-placeholder-text{font-family:var(--font-m);font-size:12px;letter-spacing:.08em;text-align:center;line-height:1.6}
-
-/* VIDEO SECTION */
+.card-overlay{position:absolute;inset:0;background:rgba(0,245,196,.08);border:1px solid rgba(0,245,196,.2);border-radius:10px;opacity:0;transition:opacity .3s;display:flex;align-items:center;justify-content:center}.card-overlay-text{font-family:var(--font-m);font-size:11px;letter-spacing:.15em;color:var(--neon);text-transform:uppercase}
+.card-body{padding:14px 16px 16px}.card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}.tag{font-family:var(--font-m);font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:3px;border:1px solid var(--border);color:var(--text-dim)}.tag.neon{border-color:rgba(0,245,196,.3);color:var(--neon)}
+.card-name{font-size:15px;font-weight:700;margin-bottom:6px;color:var(--text)}.card-desc{font-size:12px;color:var(--text-muted);line-height:1.55;font-family:var(--font-m)}
+.card-links{display:flex;gap:8px;margin-top:12px;opacity:0;transition:opacity .2s}.project-card:hover .card-links{opacity:1}
+.card-link{display:inline-flex;align-items:center;gap:5px;font-family:var(--font-m);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--neon);text-decoration:none;border:1px solid rgba(0,245,196,.25);padding:4px 10px;border-radius:3px;transition:all .2s}.card-link:hover{background:rgba(0,245,196,.1)}.card-link.gh{color:var(--text-muted);border-color:var(--border)}.card-link.gh:hover{border-color:var(--border-hover);background:var(--surface-hover)}
+.resume-wrap{display:grid;grid-template-columns:1fr 2fr;gap:40px;align-items:start}@media(max-width:768px){.resume-wrap{grid-template-columns:1fr}}
+.resume-download-btn{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 20px;font-family:var(--font-m);font-size:11px;color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .25s;width:100%;margin-bottom:12px;text-decoration:none}.resume-download-btn:hover{border-color:var(--neon);color:var(--neon);background:rgba(0,245,196,.05)}.resume-download-btn .rd-icon{font-size:18px}
+.resume-preview{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;position:relative;width:100%}.resume-preview iframe{width:100%;height:0;padding-bottom:129%;border:none;display:block}
+.resume-placeholder{display:flex;flex-direction:column;align-items:center;gap:12px;color:var(--text-dim);padding:48px}.resume-placeholder-icon{font-size:40px}.resume-placeholder-text{font-family:var(--font-m);font-size:12px;letter-spacing:.08em;text-align:center;line-height:1.6}
 .video-ai-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(66,133,244,.1),rgba(52,168,83,.08));border:1px solid rgba(66,133,244,.25);border-radius:6px;padding:8px 16px;font-family:var(--font-m);font-size:11px;color:var(--google-blue);letter-spacing:.06em;margin-bottom:32px}
-.video-ai-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--google-blue);animation:blink 1.4s ease-in-out infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.video-ai-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--google-blue);animation:blink 1.4s ease-in-out infinite}@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 .tool-pill{font-family:var(--font-m);font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:3px;border:1px solid rgba(66,133,244,.25);color:var(--google-blue)}
-.video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:24px}
-.video-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;transition:all .3s;cursor:pointer;text-decoration:none;display:block;position:relative;overflow:hidden}
-.video-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#4285f4,#34a853,#fbbc04,#ea4335);opacity:0;transition:opacity .3s}
-.video-card:hover{border-color:rgba(66,133,244,.35);background:rgba(66,133,244,.06);transform:translateY(-2px)}
-.video-card:hover::before{opacity:1}
-.video-card-icon{font-size:28px;margin-bottom:14px;display:flex;align-items:center;gap:10px}
-.video-card-play{width:40px;height:40px;border-radius:50%;border:1px solid rgba(66,133,244,.3);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--google-blue);transition:all .2s;flex-shrink:0}
-.video-card:hover .video-card-play{background:rgba(66,133,244,.15);border-color:var(--google-blue)}
-.video-card-title{font-size:15px;font-weight:700;letter-spacing:-.01em;margin-bottom:6px;color:var(--text)}
-.video-card-desc{font-family:var(--font-m);font-size:12px;color:var(--text-muted);line-height:1.6;margin-bottom:12px}
-.video-card-tools{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
-.video-card-cta{font-family:var(--font-m);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--google-blue);opacity:0;transition:opacity .2s}
-.video-card:hover .video-card-cta{opacity:1}
-.video-drive-link{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid rgba(66,133,244,.25);border-radius:8px;padding:14px 20px;font-family:var(--font-m);font-size:12px;color:var(--google-blue);letter-spacing:.06em;text-decoration:none;transition:all .25s}
-.video-drive-link:hover{border-color:var(--google-blue);background:rgba(66,133,244,.08);transform:translateY(-1px)}
-
-/* ABOUT */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
-@media(max-width:768px){.about-grid{grid-template-columns:1fr}}
-.about-text p{font-family:var(--font-m);font-size:13px;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
-.about-text p strong{color:var(--neon);font-weight:400}
-.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px}
-.stat-num{font-size:32px;font-weight:800;letter-spacing:-.02em;color:var(--neon);margin-bottom:4px}
-.stat-label{font-family:var(--font-m);font-size:10px;letter-spacing:.12em;color:var(--text-dim);text-transform:uppercase}
-
-/* FOOTER */
-footer{position:relative;z-index:1;padding:40px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
-.footer-left{font-family:var(--font-m);font-size:11px;color:var(--text-dim);letter-spacing:.08em}
-.footer-socials{display:flex;gap:16px}
-.footer-socials a{font-family:var(--font-m);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .2s}
-.footer-socials a:hover{color:var(--neon)}
-
-/* NEON DIVIDER */
-.neon-divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--neon),transparent);opacity:.2;position:relative;z-index:1}
-.google-divider{background:linear-gradient(90deg,transparent,var(--google-blue),transparent)}
-
-/* MODALS */
-.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:200;display:none;align-items:center;justify-content:center;padding:48px;backdrop-filter:blur(8px)}
-.modal-backdrop.open{display:flex}
-.modal{background:#0a0a12;border:1px solid var(--border-hover);border-radius:14px;max-width:640px;width:100%;padding:36px;position:relative;max-height:90vh;overflow-y:auto}
-.modal-close{position:absolute;top:16px;right:16px;background:transparent;border:1px solid var(--border);color:var(--text-muted);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .2s}
-.modal-close:hover{border-color:var(--neon);color:var(--neon)}
-.modal h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
-.modal-stack{font-family:var(--font-m);font-size:11px;color:var(--neon);margin-bottom:16px;letter-spacing:.08em}
-.modal p{font-family:var(--font-m);font-size:12px;color:var(--text-muted);line-height:1.7;margin-bottom:16px}
-.modal-thumb{width:100%;border-radius:8px;margin-bottom:20px;border:1px solid var(--border);background:var(--surface);min-height:120px;object-fit:cover;display:flex;align-items:center;justify-content:center;font-size:40px}
-
-/* CURSOR */
-.cursor{position:fixed;width:6px;height:6px;border-radius:50%;background:var(--neon);pointer-events:none;z-index:9999;transition:transform .15s;mix-blend-mode:screen}
-.cursor-ring{position:fixed;width:32px;height:32px;border-radius:50%;border:1px solid rgba(0,245,196,.4);pointer-events:none;z-index:9998;transition:all .2s ease;mix-blend-mode:screen}
-
-/* FADE ANIMS */
-.fade-up{opacity:0;transform:translateY(24px);animation:fadeUp .6s ease forwards}
-@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-.stagger-1{animation-delay:.1s}.stagger-2{animation-delay:.2s}.stagger-3{animation-delay:.35s}.stagger-4{animation-delay:.5s}
-
-/* MOBILE */
-@media(max-width:640px){
-  nav{padding:14px 20px}
-  .nav-links{gap:16px}
-  .nav-links a{font-size:10px;letter-spacing:.08em}
-  .hero,.section-header,section,footer{padding-left:20px;padding-right:20px}
-  .hero h1{font-size:clamp(40px,12vw,64px)}
-  .hero-cta{flex-direction:column;gap:10px}
-  .hero-cta .btn{text-align:center}
-  .google-banner{flex-direction:column;text-align:center;padding:20px}
-  .resume-wrap{grid-template-columns:1fr}
-}
-@media(max-width:480px){
-  .nav-socials{display:none}
-  .nav-links{gap:12px}
-}
+.video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:24px}
+.video-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;transition:all .3s;cursor:pointer;text-decoration:none;display:block;position:relative;overflow:hidden}
+.video-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#4285f4,#34a853,#fbbc04,#ea4335);opacity:0;transition:opacity .3s;z-index:2}.video-card:hover{border-color:rgba(66,133,244,.35);background:rgba(66,133,244,.06);transform:translateY(-2px)}.video-card:hover::before{opacity:1}
+.video-card-thumb{width:100%;aspect-ratio:16/9;overflow:hidden;position:relative;background:#0a0a14}
+.video-card-thumb img{width:100%;height:100%;object-fit:cover;display:block;filter:blur(4px) brightness(.7);transition:filter .4s ease,transform .4s ease}.video-card:hover .video-card-thumb img{filter:blur(0px) brightness(1);transform:scale(1.03)}
+.vct-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1;pointer-events:none}
+.vct-play{width:56px;height:56px;border-radius:50%;background:rgba(0,0,0,.5);border:2px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;transition:all .3s;backdrop-filter:blur(4px)}.video-card:hover .vct-play{background:rgba(66,133,244,.6);border-color:var(--google-blue);transform:scale(1.1)}
+.video-card-body{padding:16px 20px 18px}.video-card-title{font-size:15px;font-weight:700;margin-bottom:4px;color:var(--text)}.video-card-desc{font-family:var(--font-m);font-size:12px;color:var(--text-muted);line-height:1.6;margin-bottom:10px}.video-card-tools{display:flex;gap:6px;flex-wrap:wrap}
+.video-drive-link{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid rgba(66,133,244,.25);border-radius:8px;padding:14px 20px;font-family:var(--font-m);font-size:12px;color:var(--google-blue);letter-spacing:.06em;text-decoration:none;transition:all .25s}.video-drive-link:hover{border-color:var(--google-blue);background:rgba(66,133,244,.08);transform:translateY(-1px)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}@media(max-width:768px){.about-grid{grid-template-columns:1fr}}
+.about-text p{font-family:var(--font-m);font-size:13px;color:var(--text-muted);line-height:1.8;margin-bottom:16px}.about-text p strong{color:var(--neon);font-weight:400}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px}.stat-num{font-size:32px;font-weight:800;letter-spacing:-.02em;color:var(--neon);margin-bottom:4px}.stat-label{font-family:var(--font-m);font-size:10px;letter-spacing:.12em;color:var(--text-dim);text-transform:uppercase}
+footer{position:relative;z-index:1;padding:40px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}.footer-left{font-family:var(--font-m);font-size:11px;color:var(--text-dim);letter-spacing:.08em}.footer-socials{display:flex;gap:16px}.footer-socials a{font-family:var(--font-m);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .2s}.footer-socials a:hover{color:var(--neon)}
+.neon-divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--neon),transparent);opacity:.2;position:relative;z-index:1}.google-divider{background:linear-gradient(90deg,transparent,var(--google-blue),transparent)}
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:200;display:none;align-items:center;justify-content:center;padding:48px;backdrop-filter:blur(8px)}.modal-backdrop.open{display:flex}
+.modal{background:#0a0a12;border:1px solid var(--border-hover);border-radius:14px;max-width:640px;width:100%;padding:36px;position:relative;max-height:90vh;overflow-y:auto}.modal-close{position:absolute;top:16px;right:16px;background:transparent;border:1px solid var(--border);color:var(--text-muted);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .2s}.modal-close:hover{border-color:var(--neon);color:var(--neon)}
+.modal h2{font-size:22px;font-weight:800;margin-bottom:8px}.modal-stack{font-family:var(--font-m);font-size:11px;color:var(--neon);margin-bottom:16px;letter-spacing:.08em}.modal p{font-family:var(--font-m);font-size:12px;color:var(--text-muted);line-height:1.7;margin-bottom:16px}.modal-thumb{width:100%;border-radius:8px;margin-bottom:20px;border:1px solid var(--border);background:var(--surface);overflow:hidden}.modal-thumb img{width:100%;display:block}
+.cursor{position:fixed;width:6px;height:6px;border-radius:50%;background:var(--neon);pointer-events:none;z-index:9999;transition:transform .15s;mix-blend-mode:screen}.cursor-ring{position:fixed;width:32px;height:32px;border-radius:50%;border:1px solid rgba(0,245,196,.4);pointer-events:none;z-index:9998;transition:all .2s ease;mix-blend-mode:screen}
+.fade-up{opacity:0;transform:translateY(24px);animation:fadeUp .6s ease forwards}@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}.stagger-1{animation-delay:.1s}.stagger-2{animation-delay:.2s}.stagger-3{animation-delay:.35s}.stagger-4{animation-delay:.5s}
+@media(max-width:640px){nav{padding:14px 20px}.nav-links{gap:16px}.nav-links a{font-size:10px;letter-spacing:.08em}.hero,.section-header,section,footer{padding-left:20px;padding-right:20px}.hero h1{font-size:clamp(40px,12vw,64px)}.hero-cta{flex-direction:column;gap:10px}.hero-cta .btn{text-align:center}.google-banner{flex-direction:column;text-align:center;padding:20px}.resume-wrap{grid-template-columns:1fr}}
+@media(max-width:480px){.nav-socials{display:none}.nav-links{gap:12px}}
 </style>
 </head>
 <body>
-
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">JV<span>.</span></div>
-  <ul class="nav-links">
-    <li><a href="#apps">Apps</a></li>
-    <li><a href="#videos">Videos</a></li>
-    <li><a href="#google" class="google-link">Google Work</a></li>
-    <li><a href="#resume">Resume</a></li>
-    <li><a href="#about">About</a></li>
-  </ul>
-  <div class="nav-right">
-    <div class="nav-socials">
-      <a href="https://github.com/JoshuaViera" target="_blank">GitHub</a>
-      <a href="https://linkedin.com/in/joshuaviera" target="_blank">LinkedIn</a>
-    </div>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-glow2"></div>
-  <div class="hero-tag fade-up">AI-Native Engineer · Creative Technologist · New York</div>
-  <h1 class="fade-up stagger-1">JOSHUA<br><span class="line2">VIERA</span></h1>
-  <p class="hero-sub fade-up stagger-2">I build AI tools from scratch — not just prompt them. Code is my creative medium. Based in NYC.</p>
-  <div class="hero-cta fade-up stagger-3">
-    <a href="#apps" class="btn btn-primary">View Work</a>
-    <a href="#google" class="btn btn-google">Google Fellowship Work ↗</a>
-    <a href="mailto:joshuaviera@pursuit.org" class="btn btn-ghost">Get in Touch</a>
-  </div>
-  <div class="hero-scroll fade-up stagger-4">
-    <div class="scroll-line"></div>
-    Scroll to explore
-  </div>
-</section>
-
+<div class="cursor" id="cursor"></div><div class="cursor-ring" id="cursorRing"></div>
+<nav><div class="nav-logo">JV<span>.</span></div><ul class="nav-links"><li><a href="#apps">Apps</a></li><li><a href="#videos">Videos</a></li><li><a href="#google" class="google-link">Google Work</a></li><li><a href="#resume">Resume</a></li><li><a href="#about">About</a></li></ul><div class="nav-right"><div class="nav-socials"><a href="https://github.com/JoshuaViera" target="_blank">GitHub</a><a href="https://linkedin.com/in/joshuaviera" target="_blank">LinkedIn</a></div></div></nav>
+<section class="hero"><div class="hero-glow"></div><div class="hero-glow2"></div><div class="hero-tag fade-up">AI-Native Engineer · Creative Technologist · New York</div><h1 class="fade-up stagger-1">JOSHUA<br><span class="line2">VIERA</span></h1><p class="hero-sub fade-up stagger-2">I build AI tools from scratch — not just prompt them. Code is my creative medium. Based in NYC.</p><div class="hero-cta fade-up stagger-3"><a href="#apps" class="btn btn-primary">View Work</a><a href="#google" class="btn btn-google">Google Fellowship Work ↗</a><a href="/cdn-cgi/l/email-protection#2c66435f44594d5a45495e4d15196c4b414d4540024f4341" class="btn btn-ghost">Get in Touch</a></div><div class="hero-scroll fade-up stagger-4"><div class="scroll-line"></div>Scroll to explore</div></section>
 <div class="neon-divider"></div>
-
-<!-- APPS -->
-<section id="apps">
-  <div class="section-header">
-    <div>
-      <div class="section-label">01 — Apps & Websites</div>
-      <h2 class="section-title">Built Things</h2>
-    </div>
-    <div class="section-count" id="apps-count">7 projects</div>
-  </div>
-  <div class="masonry-grid" id="appGrid"></div>
-</section>
-
+<section id="apps"><div class="section-header"><div><div class="section-label">01 — Apps & Websites</div><h2 class="section-title">Built Things</h2></div><div class="section-count" id="apps-count"></div></div><div class="masonry-grid" id="appGrid"></div></section>
 <div class="neon-divider"></div>
-
-<!-- VIDEOS — Gemini + Veo 3 -->
-<section id="videos">
-  <div class="section-header">
-    <div>
-      <div class="section-label">02 — AI-Generated Video</div>
-      <h2 class="section-title">Motion Work</h2>
-    </div>
-    <div class="section-count" id="video-count">5 clips</div>
-  </div>
-
-  <div class="video-ai-badge">
-    <span class="video-ai-badge-dot"></span>
-    Made with Google Gemini + Veo 3 · Google Flow · Premiere Pro
-  </div>
-
-  <div class="video-grid" id="videoGrid"></div>
-
-  <a href="https://drive.google.com/drive/folders/1LxTZZTaA_MKldBmOjgUo-ius0MrYCPk7?usp=sharing" target="_blank" class="video-drive-link">
-    📂 View Full Video Reel on Google Drive ↗
-  </a>
-</section>
-
+<section id="videos"><div class="section-header"><div><div class="section-label">02 — AI-Generated Video</div><h2 class="section-title">Motion Work</h2></div><div class="section-count" id="video-count">5 clips</div></div><div class="video-ai-badge"><span class="video-ai-badge-dot"></span>Made with Google Gemini + Veo 3 · Google Flow · Premiere Pro</div><div class="video-grid" id="videoGrid"></div><a href="https://drive.google.com/drive/folders/YOUR_FOLDER_ID?usp=sharing" target="_blank" class="video-drive-link">📂 View Full Video Reel on Google Drive ↗</a></section>
 <div class="neon-divider google-divider"></div>
-
-<!-- GOOGLE SECTION -->
-<section id="google">
-  <div class="section-header">
-    <div>
-      <div class="section-label google-label">03 — Google Creative Fellowship</div>
-      <h2 class="section-title">Fellowship-Ready Work</h2>
-    </div>
-    <div class="section-count" id="google-count">4 pieces</div>
-  </div>
-
-  <div class="google-banner">
-    <div class="google-banner-icon">🎨</div>
-    <div class="google-banner-text">
-      <h3>Creative Technologist · AI-Native · NYC-Based</h3>
-      <p>Work spanning generative video, AI tool-building, and creative systems engineering. Built for teams that want makers who ship real things — not just prompts.</p>
-      <div class="google-badge">📍 Applying for Creative Technologist · NYC · Available June 2026</div>
-    </div>
-  </div>
-
-  <div class="google-grid" id="googleGrid"></div>
-</section>
-
+<section id="google"><div class="section-header"><div><div class="section-label google-label">03 — Google Creative Fellowship</div><h2 class="section-title">Fellowship-Ready Work</h2></div><div class="section-count" id="google-count"></div></div><div class="google-banner"><div class="google-banner-icon">🎨</div><div class="google-banner-text"><h3>Creative Technologist · AI-Native · NYC-Based</h3><p>Work spanning generative video, AI tool-building, and creative systems engineering. Built for teams that want makers who ship real things — not just prompts.</p><div class="google-badge">📍 Applying for Creative Technologist · NYC · Available June 2026</div></div></div><div class="google-grid" id="googleGrid"></div></section>
 <div class="neon-divider"></div>
-
-<!-- RESUME -->
-<section id="resume">
-  <div class="section-header">
-    <div>
-      <div class="section-label">04 — Resume</div>
-      <h2 class="section-title">My Resume</h2>
-    </div>
-    <div class="section-count">PDF ready</div>
-  </div>
-  <div class="resume-wrap">
-    <div class="resume-sidebar">
-      <a href="joshua_viera_resume.pdf" download class="resume-download-btn">
-        <span class="rd-icon">⬇</span> Download PDF
-      </a>
-      <a href="joshua_viera_resume.pdf" target="_blank" class="resume-download-btn">
-        <span class="rd-icon">↗</span> Open Full Screen
-      </a>
-      <div style="margin-top:20px;font-family:var(--font-m);font-size:11px;color:var(--text-dim);line-height:1.7;letter-spacing:.06em">
-        Full-stack engineer & creative technologist.<br>
-        Available for full-time, fellowship, or freelance.<br><br>
-        <span style="color:var(--neon)">NYC-based · Open to in-office</span>
-      </div>
-    </div>
-    <div class="resume-preview" id="resumePreview">
-      <div class="resume-placeholder" id="resumePlaceholder">
-        <div class="resume-placeholder-icon">📄</div>
-        <div class="resume-placeholder-text">
-          Resume PDF will display here when hosted alongside the file.<br>
-          Use the download button to view directly.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+<section id="resume"><div class="section-header"><div><div class="section-label">04 — Resume</div><h2 class="section-title">My Resume</h2></div><div class="section-count">PDF ready</div></div><div class="resume-wrap"><div class="resume-sidebar"><a href="joshua_viera_resume.pdf" download class="resume-download-btn"><span class="rd-icon">⬇</span> Download PDF</a><a href="joshua_viera_resume.pdf" target="_blank" class="resume-download-btn"><span class="rd-icon">↗</span> Open Full Screen</a><div style="margin-top:20px;font-family:var(--font-m);font-size:11px;color:var(--text-dim);line-height:1.7;letter-spacing:.06em">Full-stack engineer & creative technologist.<br>Available for full-time, fellowship, or freelance.<br><br><span style="color:var(--neon)">NYC-based · Open to in-office</span></div></div><div class="resume-preview" id="resumePreview"><div class="resume-placeholder" id="resumePlaceholder"><div class="resume-placeholder-icon">📄</div><div class="resume-placeholder-text">Resume PDF will display here when hosted alongside the file.<br>Use the download button to view directly.</div></div></div></div></section>
 <div class="neon-divider"></div>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-header">
-    <div>
-      <div class="section-label">05 — About</div>
-      <h2 class="section-title">The Story</h2>
-    </div>
-  </div>
-  <div class="about-grid">
-    <div class="about-text">
-      <p>I'm a <strong>New York-based engineer</strong> who treats code as a creative medium. My path bridges technical architecture with visual storytelling — building AI tools from scratch, not just prompting them.</p>
-      <p>I rebuilt an AI triage system from <strong>60% to 93% accuracy</strong> and presented results to a CEO. I built MotionFrame — a browser-based tool that turns text into video with no backend needed. I built Star Scavenger, a full 5-level space shooter, then refactored 1,400 lines into clean modular architecture.</p>
-      <p>I don't think AI replaces creative instinct. I think it raises the stakes for having one.</p>
-    </div>
-    <div class="about-stats">
-      <div class="stat-card"><div class="stat-num">93%</div><div class="stat-label">AI Accuracy Rebuilt</div></div>
-      <div class="stat-card"><div class="stat-num">10+</div><div class="stat-label">Projects Shipped</div></div>
-      <div class="stat-card"><div class="stat-num">NYC</div><div class="stat-label">Based & Available</div></div>
-      <div class="stat-card"><div class="stat-num">AI</div><div class="stat-label">Native Engineer</div></div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-left">© 2026 Joshua Viera — Creative Technologist, New York</div>
-  <div class="footer-socials">
-    <a href="https://github.com/JoshuaViera" target="_blank">GitHub</a>
-    <a href="https://linkedin.com/in/joshuaviera" target="_blank">LinkedIn</a>
-    <a href="mailto:joshuaviera@pursuit.org">Email</a>
-  </div>
-</footer>
-
-<!-- VIEW MODAL -->
-<div class="modal-backdrop" id="viewModal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('viewModal')">✕</button>
-    <div class="modal-thumb" id="viewThumb">🖥</div>
-    <h2 id="viewTitle"></h2>
-    <div class="modal-stack" id="viewStack"></div>
-    <p id="viewDesc"></p>
-    <div style="display:flex;gap:10px;flex-wrap:wrap" id="viewButtons"></div>
-  </div>
-</div>
-
-<script>
-// ══ CURSOR ══
-const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
-document.addEventListener('mousemove',e=>{
-  cursor.style.left=e.clientX-3+'px';cursor.style.top=e.clientY-3+'px';
-  ring.style.left=e.clientX-16+'px';ring.style.top=e.clientY-16+'px';
-});
-// Hide custom cursor on touch devices
-if('ontouchstart' in window){cursor.style.display='none';ring.style.display='none';}
-
-// ══ SEED DATA ══
-// ⚠️  IMPORTANT: Before deploying, verify every GitHub URL below resolves to a public repo.
-//     Replace any '#' liveUrl with real deployed URLs or remove liveUrl entirely.
+<section id="about"><div class="section-header"><div><div class="section-label">05 — About</div><h2 class="section-title">The Story</h2></div></div><div class="about-grid"><div class="about-text"><p><strong>Software Engineer</strong> · iOS Developer · Full Stack Web Dev · AI Native</p><p>I'm a New York-based creative technologist who treats code as a medium for storytelling. I started building iOS apps nearly a decade ago, and that foundation in native development shaped how I think about interfaces — performance-first, user-obsessed, detail-oriented.</p><p>Today I build AI-native tools and full-stack applications that bridge technical architecture with creative vision. I rebuilt an AI triage system from <strong>60% to 93% accuracy</strong> and presented the results to a CEO. I built MotionFrame — a browser-based text-to-video pipeline with no backend. I direct AI-generated video with Google Gemini and Veo 3. I ship fast, I ship clean, and I build things because they need to exist.</p><p>I'm an <strong>AI-Native Fellow at Pursuit</strong>, where I've also served as an instructor — because I believe the best way to learn is to teach. My creative philosophy is simple: AI doesn't replace creative instinct. It raises the stakes for having one.</p></div><div class="about-stats"><div class="stat-card"><div class="stat-num">93%</div><div class="stat-label">AI Accuracy Rebuilt</div></div><div class="stat-card"><div class="stat-num">10+</div><div class="stat-label">Projects Shipped</div></div><div class="stat-card"><div class="stat-num">NYC</div><div class="stat-label">Based & Available</div></div><div class="stat-card"><div class="stat-num">8+</div><div class="stat-label">Years Building</div></div></div></div></section>
+<footer><div class="footer-left">© 2026 Joshua Viera — Creative Technologist, New York</div><div class="footer-socials"><a href="https://github.com/JoshuaViera" target="_blank">GitHub</a><a href="https://linkedin.com/in/joshuaviera" target="_blank">LinkedIn</a><a href="/cdn-cgi/l/email-protection#1f55706c776a7e69767a6d7e262a5f78727e7673317c7072">Email</a></div></footer>
+<div class="modal-backdrop" id="viewModal"><div class="modal"><button class="modal-close" onclick="closeModal('viewModal')">✕</button><div class="modal-thumb" id="viewThumb"></div><h2 id="viewTitle"></h2><div class="modal-stack" id="viewStack"></div><p id="viewDesc"></p><div style="display:flex;gap:10px;flex-wrap:wrap" id="viewButtons"></div></div></div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX-3+'px';cursor.style.top=e.clientY-3+'px';ring.style.left=e.clientX-16+'px';ring.style.top=e.clientY-16+'px';});if('ontouchstart' in window){cursor.style.display='none';ring.style.display='none';}
 const projects=[
-  {
-    id:1,
-    name:'Relay AI — Triage System',
-    stack:'Next.js · TypeScript · NLP',
-    desc:'Rebuilt a broken triage algorithm from 60% to 93% accuracy using weighted NLP signals. Presented findings directly to the CEO. This became a defining portfolio signal.',
-    emoji:'🧠',
-    github:'https://github.com/JoshuaViera',
-    tall:false
-  },
-  {
-    id:2,
-    name:'MotionFrame',
-    stack:'FFmpeg.wasm · Canvas API · HuggingFace',
-    desc:'Browser-based text-to-video tool. No backend, no subscription. Text prompt → AI image → animated video — all client-side using FFmpeg.wasm and HuggingFace free API.',
-    emoji:'🎞',
-    github:'https://github.com/JoshuaViera',
-    tall:true
-  },
-  {
-    id:3,
-    name:'Nuclear Force: Golden Hour Router',
-    stack:'Leaflet · Turf.js · GeoJSON · Vanilla JS',
-    desc:'NYC-focused nuclear emergency survival app built in 24hrs at a fellowship hackathon. Static GeoJSON architecture, no backend. Calculates evacuation routes and shelter proximity in real-time.',
-    emoji:'☢️',
-    github:'https://github.com/JoshuaViera',
-    tall:true
-  },
-  {
-    id:4,
-    name:'ArchiveAI',
-    stack:'Next.js · TypeScript · Voice Cloning',
-    desc:'LinkedIn voice-cloning and post-generation tool for solo consultants. Generate on-brand content in your own voice. Co-founding — currently in prototype.',
-    emoji:'🎙',
-    github:'https://github.com/JoshuaViera',
-    tall:false
-  },
-  {
-    id:5,
-    name:'Star Scavenger',
-    stack:'Next.js · TypeScript · Canvas API · Supabase',
-    desc:'Full 5-level browser space shooter with boss fights, analytics, leaderboards, and mobile controls. Refactored from a 1,400-line monolith into 10 modular hooks.',
-    emoji:'🚀',
-    github:'https://github.com/JoshuaViera',
-    tall:true
-  },
-  {
-    id:6,
-    name:'SnowGo',
-    stack:'React Native · Expo · GPT-4 Vision · Stripe',
-    desc:'Two-sided marketplace connecting homeowners with snow removal providers. GPT-4 Vision analyzes property photos for automatic quoting.',
-    emoji:'❄️',
-    github:'https://github.com/JoshuaViera',
-    tall:false
-  },
-  {
-    id:7,
-    name:'Daily Vow',
-    stack:'Next.js · Supabase · Google Gemini',
-    desc:'AI-powered prayer and commitment tracker. Transforms vague goals into structured daily commitments through conversational AI. Built because I needed it to exist.',
-    emoji:'✅',
-    github:'https://github.com/JoshuaViera/prayer-ledger',
-    tall:false
-  },
+{id:1,name:'MotionFrame',stack:'FFmpeg.wasm · Canvas API · HuggingFace',desc:'Browser-based text-to-video tool. No backend, no subscription. Text prompt → AI image → animated video — all client-side.',imgSrc:'motionframe.png',github:'https://github.com/JoshuaViera/MotionFrame',liveUrl:'https://motion-frame.vercel.app',tall:true},
+{id:2,name:'NightFall V2',stack:'TypeScript · Vite',desc:'Immersive interactive experience built with TypeScript and Vite. Creative coding meets storytelling.',imgSrc:'nightfall.png',github:'https://github.com/JoshuaViera/NightFallV2',liveUrl:'https://night-fall-v2.vercel.app',tall:false},
+{id:3,name:'Star Scavenger',stack:'Next.js · TypeScript · Canvas API · Supabase',desc:'Full 5-level browser space shooter with boss fights, analytics, leaderboards, and mobile controls. Refactored from 1,400-line monolith to 10 modular hooks.',imgSrc:'star-scavenger.png',github:'https://github.com/JoshuaViera/star-scavenger',liveUrl:'https://star-scavenger.vercel.app/dashboard',tall:true},
+{id:4,name:'ArchiveAI',stack:'Next.js · TypeScript · Voice Cloning',desc:'LinkedIn voice-cloning and post-generation tool for solo consultants. Generate on-brand content in your own voice.',imgSrc:'archiveai.png',github:'https://github.com/JoshuaViera/ArchiveAi',liveUrl:'https://archive-ai-flax.vercel.app',tall:false},
+{id:5,name:'RateShield',stack:'Next.js · AI Analysis',desc:'AI-powered rate analysis tool. Smart financial insights delivered through a clean, modern interface.',imgSrc:'rateshield.png',github:'https://github.com/JoshuaViera/rateshield',liveUrl:'https://rateshield.vercel.app',tall:false},
+{id:6,name:'AI QA Suite',stack:'Next.js · Google Gemini API',desc:'Test generation and bug-reporting suite using Google Gemini. Generates structured QA reports, error explanations, and formatted bug tickets.',imgSrc:'ai-qa-suite.png',github:'https://github.com/JoshuaViera/ai-qa-suite',liveUrl:'https://ai-qa-suite.vercel.app',tall:false},
+{id:7,name:'SnowGo',stack:'React Native · Expo · GPT-4 Vision · Stripe',desc:'Two-sided marketplace connecting homeowners with snow removal providers. GPT-4 Vision analyzes property photos for automatic quoting.',imgSrc:'snowgo.png',github:'https://github.com/JoshuaViera/snowDayApp',liveUrl:'',tall:false},
+{id:8,name:'Daily Vow',stack:'Next.js · Supabase · Google Gemini',desc:'AI-powered prayer and commitment tracker. Built because I needed it to exist.',imgSrc:'prayer-ledger.png',github:'https://github.com/JoshuaViera/prayer-ledger',liveUrl:'https://prayer-ledger.vercel.app',tall:false},
+{id:9,name:'Relay AI — Triage System',stack:'Next.js · TypeScript · NLP',desc:'Rebuilt a broken triage algorithm from 60% to 93% accuracy using weighted NLP signals. Presented findings directly to the CEO.',imgSrc:'',github:'https://github.com/JoshuaViera/l2assessment',liveUrl:'',tall:false},
 ];
-
 const googleItems=[
-  {
-    id:'g1',
-    name:'MotionFrame — Generative Video',
-    tool:'Creative Technologist · Video Storyteller',
-    desc:'Browser-based tool converting text prompts into video using FFmpeg.wasm and AI image generation. Zero backend — all client-side. Built because generative video tools were either expensive or required server infrastructure nobody could afford.',
-    emoji:'🎞',
-    link:''
-  },
-  {
-    id:'g2',
-    name:'AI Triage System Rebuild',
-    tool:'Creative Technologist · AI Engineering',
-    desc:'Diagnosed and rebuilt a broken NLP triage system from 60% to 93% accuracy using weighted keyword signals. Translated engineering decisions into business impact for a CEO presentation. Nobody asked me to fix it — I saw the problem and built the solution.',
-    emoji:'🧠',
-    link:''
-  },
-  {
-    id:'g3',
-    name:'AI QA Suite',
-    tool:'Creative Technologist · Prototyping',
-    desc:'Full test-generation and bug-reporting suite using Google Gemini API. Generates structured QA reports, error explanations, and formatted bug tickets. Live and deployed.',
-    emoji:'🔧',
-    link:'https://ai-qa-suite.vercel.app'
-  },
-  {
-    id:'g4',
-    name:'Nuclear Force: Golden Hour Router',
-    tool:'Creative Technologist · Civic Tech',
-    desc:'Built a real-time nuclear emergency evacuation router for NYC in 24 hours at a hackathon. Leaflet maps, Turf.js geospatial math, static GeoJSON — zero backend. Built because the idea of not having a plan felt unacceptable.',
-    emoji:'☢️',
-    link:''
-  },
+{id:'g1',name:'MotionFrame — Generative Video',tool:'Creative Technologist · Video Storyteller',desc:'Browser-based tool converting text prompts into video. Zero backend — all client-side. Built because generative video tools were either expensive or required server infrastructure nobody could afford.',imgSrc:'motionframe.png',github:'https://github.com/JoshuaViera/MotionFrame',liveUrl:'https://motion-frame.vercel.app'},
+{id:'g2',name:'AI Triage System Rebuild',tool:'Creative Technologist · AI Engineering',desc:'Diagnosed and rebuilt a broken NLP triage system from 60% to 93% accuracy. Translated engineering decisions into business impact for a CEO presentation. Nobody asked me to fix it — I saw the problem and built the solution.',imgSrc:'',github:'https://github.com/JoshuaViera/l2assessment',liveUrl:''},
+{id:'g3',name:'AI QA Suite',tool:'Creative Technologist · Prototyping',desc:'Full test-generation and bug-reporting suite using Google Gemini API. Live and deployed.',imgSrc:'ai-qa-suite.png',github:'https://github.com/JoshuaViera/ai-qa-suite',liveUrl:'https://ai-qa-suite.vercel.app'},
+{id:'g4',name:'NightFall V2',tool:'Creative Technologist · Interactive Storytelling',desc:'Immersive interactive experience blending creative coding with narrative design. Built to push the boundaries of browser-based storytelling.',imgSrc:'nightfall.png',github:'https://github.com/JoshuaViera/NightFallV2',liveUrl:'https://night-fall-v2.vercel.app'},
 ];
-
-// ══════════════════════════════════════════════════════════════
-// VIDEO CARDS — each links directly to Google Drive
-// ══════════════════════════════════════════════════════════════
 const videoItems=[
-  {
-    title:'Super Weez',
-    desc:'AI-generated short exploring character and motion through Veo 3.',
-    driveUrl:'https://drive.google.com/file/d/1D-nK-n9VLIu70SLhPFUt9doPQs0FsH0c/view',
-    tools:['Gemini','Veo 3','Google Flow','Premiere Pro']
-  },
-  {
-    title:'Emotions',
-    desc:'Visual narrative on emotional states, directed in Google Flow and color-graded in Premiere.',
-    driveUrl:'https://drive.google.com/file/d/1k6hkj6qZXxFPbnf_Y48gpWE88QNHNx2h/view',
-    tools:['Gemini','Veo 3','Google Flow','Premiere Pro']
-  },
-  {
-    title:'Quality Control',
-    desc:'Experimental piece blending AI-generated footage with editorial pacing.',
-    driveUrl:'https://drive.google.com/file/d/1teYbNAA3woh7CFqFAoDozCEfXgx-OF5N/view',
-    tools:['Gemini','Veo 3','Google Flow','Premiere Pro']
-  },
-  {
-    title:'Cyber View',
-    desc:'Trailer for a story I\'m working on — worldbuilding through AI video.',
-    driveUrl:'https://drive.google.com/file/d/1OYA8l0mgT8N6FOctVlJ7XeEz6k_UxCnD/view',
-    tools:['Gemini','Veo 3','Google Flow','Premiere Pro']
-  },
-  {
-    title:'World Ender',
-    desc:'Hackathon project — rapid AI video prototyping under time pressure.',
-    driveUrl:'https://drive.google.com/file/d/1vzzI72aIpxYOXQE0HCwaHXs2YwHbVCIo/view',
-    tools:['Gemini','Veo 3','Google Flow','Premiere Pro']
-  },
+{title:'Super Weez',desc:'AI-generated short exploring character and motion through Veo 3.',driveUrl:'https://drive.google.com/file/d/1D-nK-n9VLIu70SLhPFUt9doPQs0FsH0c/view',imgSrc:'vid-1.png',tools:['Gemini','Veo 3','Google Flow','Premiere Pro']},
+{title:'Emotions',desc:'Visual narrative on emotional states, directed in Google Flow and color-graded in Premiere.',driveUrl:'https://drive.google.com/file/d/1k6hkj6qZXxFPbnf_Y48gpWE88QNHNx2h/view',imgSrc:'vid-2.png',tools:['Gemini','Veo 3','Google Flow','Premiere Pro']},
+{title:'Quality Control',desc:'Experimental piece blending AI-generated footage with editorial pacing.',driveUrl:'https://drive.google.com/file/d/1teYbNAA3woh7CFqFAoDozCEfXgx-OF5N/view',imgSrc:'vid-3.png',tools:['Gemini','Veo 3','Google Flow','Premiere Pro']},
+{title:'Cyber View',desc:"Trailer for a story I'm working on — worldbuilding through AI video.",driveUrl:'https://drive.google.com/file/d/1OYA8l0mgT8N6FOctVlJ7XeEz6k_UxCnD/view',imgSrc:'vid-4.png',tools:['Gemini','Veo 3','Google Flow','Premiere Pro']},
+{title:'World Ender',desc:'Hackathon project — rapid AI video prototyping under time pressure.',driveUrl:'https://drive.google.com/file/d/1vzzI72aIpxYOXQE0HCwaHXs2YwHbVCIo/view',imgSrc:'vid-5.png',tools:['Gemini','Veo 3','Google Flow','Premiere Pro']},
 ];
-
-// ══ VIDEO GRID ══
-const videoGrid=document.getElementById('videoGrid');
-
-function renderVideoGrid(){
-  videoGrid.innerHTML='';
-  videoItems.forEach(v=>{
-    const card=document.createElement('a');
-    card.className='video-card';
-    card.href=v.driveUrl;
-    card.target='_blank';
-    card.rel='noopener';
-    card.innerHTML=`
-      <div class="video-card-icon">
-        <div class="video-card-play">▶</div>
-      </div>
-      <div class="video-card-title">${v.title}</div>
-      <div class="video-card-desc">${v.desc}</div>
-      <div class="video-card-tools">${v.tools.map(t=>`<span class="tool-pill">${t}</span>`).join('')}</div>
-      <div class="video-card-cta">Watch on Google Drive ↗</div>
-    `;
-    videoGrid.appendChild(card);
-  });
-  document.getElementById('video-count').textContent=videoItems.length+' clip'+(videoItems.length!==1?'s':'');
-}
-
-renderVideoGrid();
-
-// ══ APP GRID ══
 const appGrid=document.getElementById('appGrid');
-
-function renderAppGrid(){
-  appGrid.innerHTML='';
-  projects.forEach(p=>{
-    const card=makeAppCard(p);
-    appGrid.appendChild(card);
-  });
-  document.getElementById('apps-count').textContent=projects.length+' project'+(projects.length!==1?'s':'');
-}
-
-function makeAppCard(p){
-  const div=document.createElement('div');
-  div.className='project-card';
-  const thumbInner=p.imgSrc
-    ?`<img src="${p.imgSrc}" alt="${p.name}" style="min-height:120px">`
-    :`<div class="card-thumb-placeholder" style="min-height:${p.tall?180:130}px">${p.emoji||'🖥'}</div>`;
-
-  const links=[];
-  if(p.github) links.push(`<a href="${p.github}" class="card-link gh" target="_blank" onclick="event.stopPropagation()">⌥ GitHub</a>`);
-  if(p.liveUrl) links.push(`<a href="${p.liveUrl}" class="card-link" target="_blank" onclick="event.stopPropagation()">↗ Live</a>`);
-
-  div.innerHTML=`
-    <div class="card-thumb">
-      ${thumbInner}
-      <div class="card-overlay">
-        <span class="card-overlay-text">View Details</span>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="card-tags">${(p.stack||'').split('·').map((t,i)=>`<span class="tag${i===0?' neon':''}">${t.trim()}</span>`).join('')}</div>
-      <div class="card-name">${p.name}</div>
-      <div class="card-desc">${p.desc}</div>
-      <div class="card-links">${links.join('')}</div>
-    </div>`;
-  div.addEventListener('click',()=>openViewModal(p));
-  return div;
-}
-
+function renderAppGrid(){appGrid.innerHTML='';projects.forEach(p=>{appGrid.appendChild(makeAppCard(p));});document.getElementById('apps-count').textContent=projects.length+' projects';}
+function makeAppCard(p){const d=document.createElement('div');d.className='project-card';const th=p.imgSrc?`<img src="${p.imgSrc}" alt="${p.name}" style="min-height:120px" onerror="this.outerHTML='<div class=card-thumb-placeholder style=min-height:130px>🖥</div>'">`:`<div class="card-thumb-placeholder" style="min-height:${p.tall?180:130}px">🖥</div>`;const lk=[];if(p.github)lk.push(`<a href="${p.github}" class="card-link gh" target="_blank" onclick="event.stopPropagation()">⌥ GitHub</a>`);if(p.liveUrl)lk.push(`<a href="${p.liveUrl}" class="card-link" target="_blank" onclick="event.stopPropagation()">↗ Live</a>`);d.innerHTML=`<div class="card-thumb">${th}<div class="card-overlay"><span class="card-overlay-text">View Details</span></div></div><div class="card-body"><div class="card-tags">${(p.stack||'').split('·').map((t,i)=>`<span class="tag${i===0?' neon':''}">${t.trim()}</span>`).join('')}</div><div class="card-name">${p.name}</div><div class="card-desc">${p.desc}</div><div class="card-links">${lk.join('')}</div></div>`;d.addEventListener('click',()=>openViewModal(p));return d;}
 renderAppGrid();
-
-// ══ GOOGLE GRID ══
+const videoGrid=document.getElementById('videoGrid');
+function renderVideoGrid(){videoGrid.innerHTML='';videoItems.forEach(v=>{const c=document.createElement('a');c.className='video-card';c.href=v.driveUrl;c.target='_blank';c.rel='noopener';const img=v.imgSrc?`<img src="${v.imgSrc}" alt="${v.title}" onerror="this.style.display='none'">`:'';c.innerHTML=`<div class="video-card-thumb">${img}<div class="vct-overlay"><div class="vct-play">▶</div></div></div><div class="video-card-body"><div class="video-card-title">${v.title}</div><div class="video-card-desc">${v.desc}</div><div class="video-card-tools">${v.tools.map(t=>`<span class="tool-pill">${t}</span>`).join('')}</div></div>`;videoGrid.appendChild(c);});document.getElementById('video-count').textContent=videoItems.length+' clips';}
+renderVideoGrid();
 const googleGrid=document.getElementById('googleGrid');
-
-function renderGoogleGrid(){
-  googleGrid.innerHTML='';
-  googleItems.forEach(item=>{
-    const card=document.createElement('div');
-    card.className='google-card';
-    card.innerHTML=`
-      <div class="google-card-icon">${item.emoji}</div>
-      <div class="google-card-name">${item.name}</div>
-      <div class="google-card-tool">${item.tool}</div>
-      <div class="google-card-desc">${item.desc}</div>
-      ${item.link?`<a href="${item.link}" class="google-card-link" target="_blank" onclick="event.stopPropagation()">View Live ↗</a>`:''}
-    `;
-    googleGrid.appendChild(card);
-  });
-  document.getElementById('google-count').textContent=googleItems.length+' piece'+(googleItems.length!==1?'s':'');
-}
-
+function renderGoogleGrid(){googleGrid.innerHTML='';googleItems.forEach(item=>{const c=document.createElement('div');c.className='google-card';const img=item.imgSrc?`<img src="${item.imgSrc}" alt="${item.name}" onerror="this.outerHTML='<div class=gct-placeholder>🔵</div>'">`:`<div class="gct-placeholder">🔵</div>`;const lk=[];if(item.liveUrl)lk.push(`<a href="${item.liveUrl}" class="gcl" target="_blank" onclick="event.stopPropagation()">↗ Live</a>`);if(item.github)lk.push(`<a href="${item.github}" class="gcl gh" target="_blank" onclick="event.stopPropagation()">⌥ GitHub</a>`);c.innerHTML=`<div class="google-card-thumb">${img}</div><div class="google-card-body"><div class="google-card-name">${item.name}</div><div class="google-card-tool">${item.tool}</div><div class="google-card-desc">${item.desc}</div><div class="google-card-links">${lk.join('')}</div></div>`;googleGrid.appendChild(c);});document.getElementById('google-count').textContent=googleItems.length+' pieces';}
 renderGoogleGrid();
-
-// ══ VIEW MODAL ══
-function openViewModal(p){
-  document.getElementById('viewTitle').textContent=p.name;
-  document.getElementById('viewStack').textContent=p.stack||'';
-  document.getElementById('viewDesc').textContent=p.desc||'';
-  const t=document.getElementById('viewThumb');
-  t.innerHTML=p.imgSrc?`<img src="${p.imgSrc}" style="width:100%;border-radius:8px;display:block">`:(p.emoji||'🖥');
-
-  const btnContainer=document.getElementById('viewButtons');
-  btnContainer.innerHTML='';
-  if(p.liveUrl){
-    btnContainer.innerHTML+=`<a href="${p.liveUrl}" target="_blank" class="btn btn-primary" style="font-size:11px;padding:10px 20px">↗ Live Site</a>`;
-  }
-  if(p.github){
-    btnContainer.innerHTML+=`<a href="${p.github}" target="_blank" class="btn btn-ghost" style="font-size:11px;padding:10px 20px">⌥ GitHub</a>`;
-  }
-  document.getElementById('viewModal').classList.add('open');
-}
-
+function openViewModal(p){document.getElementById('viewTitle').textContent=p.name;document.getElementById('viewStack').textContent=p.stack||'';document.getElementById('viewDesc').textContent=p.desc||'';const t=document.getElementById('viewThumb');t.innerHTML=p.imgSrc?`<img src="${p.imgSrc}" style="width:100%;display:block">`:'';const b=document.getElementById('viewButtons');b.innerHTML='';if(p.liveUrl)b.innerHTML+=`<a href="${p.liveUrl}" target="_blank" class="btn btn-primary" style="font-size:11px;padding:10px 20px">↗ Live Site</a>`;if(p.github)b.innerHTML+=`<a href="${p.github}" target="_blank" class="btn btn-ghost" style="font-size:11px;padding:10px 20px">⌥ GitHub</a>`;document.getElementById('viewModal').classList.add('open');}
 function closeModal(id){document.getElementById(id).classList.remove('open');}
-document.querySelectorAll('.modal-backdrop').forEach(m=>{
-  m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');});
-});
+document.querySelectorAll('.modal-backdrop').forEach(m=>{m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');});});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-backdrop.open').forEach(m=>m.classList.remove('open'));});
-
-// ══ SCROLL FADE-IN ══
-const observer=new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.style.opacity='1';
-      entry.target.style.transform='translateY(0)';
-    }
-  });
-},{threshold:0.1});
-
-document.querySelectorAll('.project-card,.google-card,.stat-card').forEach(el=>{
-  el.style.opacity='0';
-  el.style.transform='translateY(20px)';
-  el.style.transition='opacity .5s ease, transform .5s ease';
-  observer.observe(el);
-});
-
-// ══ RESUME PDF AUTO-LOAD ══
-// If joshua_viera_resume.pdf exists alongside this file, load it
-(function(){
-  const preview=document.getElementById('resumePreview');
-  const placeholder=document.getElementById('resumePlaceholder');
-  // Try to load the PDF
-  const testUrl='joshua_viera_resume.pdf';
-  fetch(testUrl,{method:'HEAD'}).then(r=>{
-    if(r.ok){
-      placeholder.style.display='none';
-      preview.innerHTML=`<iframe src="${testUrl}" title="Resume" style="width:100%;height:600px;border:none;display:block"></iframe>`;
-    }
-  }).catch(()=>{/* PDF not found, keep placeholder */});
-})();
-</script>
-</body>
-</html>
+const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.opacity='1';entry.target.style.transform='translateY(0)';}});},{threshold:0.1});
+document.querySelectorAll('.project-card,.google-card,.stat-card,.video-card').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity .5s ease, transform .5s ease';observer.observe(el);});
+(function(){const p=document.getElementById('resumePreview'),ph=document.getElementById('resumePlaceholder');fetch('joshua_vier
